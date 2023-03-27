@@ -1,0 +1,21 @@
+app:
+  name: Wallet
+  description: Basic Wallet implementation using DDD pattern
+
+# In Memory Database Configuration.
+spring:
+  datasource:
+    url: jdbc:h2:mem:wallet
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true # exec "data.sql" after schema initialization (ex. migrations).
+  h2:
+    console:
+      enabled: true # Then, after starting the application, we can navigate to http://localhost:8080/h2-console, which will present us with a login page.
+      path: /h2-console
+      settings:
+        trace: false
+        web-allow-other-files: false
