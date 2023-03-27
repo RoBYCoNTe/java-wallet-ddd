@@ -28,8 +28,7 @@ public class WalletServiceImpl implements WalletService {
 
     @Override
     public CreateWalletResponse create(CreateWalletRequest request) {
-        Wallet wallet = new Wallet();
-        wallet.setName(request.getName());
+        Wallet wallet = Wallet.create(request.getName());
         walletRepository.save(wallet);
 
         return new CreateWalletResponse(ResponseCode.OK, wallet.getId());

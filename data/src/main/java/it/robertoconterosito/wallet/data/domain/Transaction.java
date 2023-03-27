@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Setter
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +29,7 @@ public class Transaction {
     private LocalDateTime date = LocalDateTime.now();
 
     @ManyToOne
+    @Setter
     private Wallet wallet;
 
     public static Transaction create(TransactionType type, Money amount, String description) {

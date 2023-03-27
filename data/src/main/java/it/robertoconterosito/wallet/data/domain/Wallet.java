@@ -19,7 +19,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Setter
 public class Wallet extends DomainEntity<Wallet> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,15 +31,23 @@ public class Wallet extends DomainEntity<Wallet> {
     @OneToMany(mappedBy = "wallet", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Transaction> transactions = new ArrayList<>();
 
+    public static Wallet create(String name) {
+        Wallet wallet = new Wallet();
+        wallet.name = name;
+        wallet.balance = Money.of(Currency.getInstance("EUR"), BigDecimal.ZERO);
+
+        return wallet;
+    }
+
     public Transaction addTransaction(Transaction transaction) {
         transaction.setWallet(this);
 
         this.transactions.add(transaction);
         if (transaction.getType() == TransactionType.INCOME) {
-            this.setBalance(this.balance.add(transaction.getAmount()));
+            this.balance = (this.balance.add(transaction.getAmount()));
         }
         else {
-            this.setBalance(this.balance.subtract(transaction.getAmount()));
+            this.balance = (this.balance.subtract(transaction.getAmount()));
         }
 
         if (this.balance.getAmount().compareTo(BigDecimal.ZERO) < 0) {
