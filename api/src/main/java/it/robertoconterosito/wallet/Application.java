@@ -1,4 +1,4 @@
-package wallet;
+package it.robertoconterosito.wallet;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 @ComponentScan(basePackages  = {
 		"it.robertoconterosito.wallet",
-		"it.robertoconterosito.wallet.data.application"
+		"it.robertoconterosito.wallet.data"
 })
 public class Application {
 

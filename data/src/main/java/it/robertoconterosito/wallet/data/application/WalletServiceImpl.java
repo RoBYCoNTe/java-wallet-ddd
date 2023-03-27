@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Component
 public class WalletServiceImpl implements WalletService {
     @Autowired
     private WalletRepository walletRepository;

@@ -1,4 +1,4 @@
-package wallet.controller;
+package it.robertoconterosito.wallet.controller;
 
 import it.robertoconterosito.wallet.data.sdk.WalletService;
 import it.robertoconterosito.wallet.data.sdk.request.AddTransactionRequest;
