@@ -40,6 +40,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class WalletControllerTests {
     @Autowired
     private TestRestTemplate restTemplate;
+
     @Test
     @DisplayName("Should create a valid wallet")
     public void testCreateWallet() {
