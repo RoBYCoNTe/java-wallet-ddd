@@ -1,4 +1,4 @@
-package it.robertoconterosito.wallet.controller;
+package it.robertoconterosito.wallet.tests.controller;
 
 import it.robertoconterosito.wallet.controller.request.AddTransactionRequest;
 import it.robertoconterosito.wallet.controller.request.CreateWalletRequest;

@@ -1,10 +1,11 @@
-package it.robertoconterosito.wallet.service;
+package it.robertoconterosito.wallet.tests.service;
 
 import it.robertoconterosito.wallet.domain.Wallet;
 import it.robertoconterosito.wallet.domain.Money;
 import it.robertoconterosito.wallet.domain.Transaction;
 import it.robertoconterosito.wallet.event.WalletBalanceNegativeEvent;
 import it.robertoconterosito.wallet.exception.WalletNotFoundException;
+import it.robertoconterosito.wallet.service.WalletService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
