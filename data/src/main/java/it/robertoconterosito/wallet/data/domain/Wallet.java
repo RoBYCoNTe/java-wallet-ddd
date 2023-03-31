@@ -1,6 +1,7 @@
 package it.robertoconterosito.wallet.data.domain;
 
 import it.robertoconterosito.wallet.data.sdk.event.WalletBalanceNegativeEvent;
+import it.robertoconterosito.wallet.data.sdk.event.WalletCreatedEvent;
 import it.robertoconterosito.wallet.data.sdk.event.WalletTransactionAddedEvent;
 import it.robertoconterosito.wallet.data.sdk.model.Money;
 import it.robertoconterosito.wallet.data.sdk.model.TransactionType;
@@ -16,7 +17,6 @@ import java.util.Currency;
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 public class Wallet extends DomainEntity<Wallet> {
@@ -30,6 +30,10 @@ public class Wallet extends DomainEntity<Wallet> {
 
     @OneToMany(mappedBy = "wallet", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Transaction> transactions = new ArrayList<>();
+
+    public Wallet() {
+        this.registerEvent(new WalletCreatedEvent(this.id));
+    }
 
     public static Wallet create(String name) {
         Wallet wallet = new Wallet();
