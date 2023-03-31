@@ -23,6 +23,7 @@ public class EventConsumer {
     @SuppressWarnings("unused")
     public void handleEvent(WalletEvent event) {
         logger.info("Event received: " + event.toString());
+        rabbitTemplate.setExchange("wallet");
         rabbitTemplate.convertAndSend("wallet", event);
     }
 }
