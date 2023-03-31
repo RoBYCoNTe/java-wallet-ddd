@@ -9,4 +9,9 @@ public abstract class DomainEntity<T extends AbstractAggregateRoot<T>> extends A
         return this.domainEvents();
     }
 
+    @Override
+    public Collection<Object> domainEvents() {
+        return super.domainEvents();
+    }
+
 }

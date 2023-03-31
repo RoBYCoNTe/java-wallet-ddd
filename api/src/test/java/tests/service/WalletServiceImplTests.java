@@ -29,7 +29,7 @@ public class WalletServiceImplTests {
     }
 
     @Test
-    @DisplayName("Test WalletRepository is not null")
+    @DisplayName("Test events are published and consumed")
     public void testDomainPendingEvents() {
         Wallet wallet = Wallet.create("My Wallet");
         assertTrue(wallet.getPendingEvents().size() > 0);
