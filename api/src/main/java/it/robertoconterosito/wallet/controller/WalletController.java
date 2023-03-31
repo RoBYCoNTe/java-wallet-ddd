@@ -18,6 +18,12 @@ public class WalletController {
     @Autowired
     private WalletService walletService;
 
+    @GetMapping("/create")
+    public ResponseEntity<CreateWalletResponse> create(String name) {
+        CreateWalletResponse wallet = walletService.create(new CreateWalletRequest(name));
+        return ResponseEntity.ok(wallet);
+    }
+
     @PostMapping("/wallets")
     public ResponseEntity<CreateWalletResponse> add(@RequestBody CreateWalletRequest request) {
         CreateWalletResponse wallet = walletService.create(request);
