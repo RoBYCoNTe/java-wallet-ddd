@@ -5,3 +5,7 @@ spring:
     username: guest
     password: guest
     debug: true
+
+logging:
+  level:
+    org.springframework.amqp: DEBUG
