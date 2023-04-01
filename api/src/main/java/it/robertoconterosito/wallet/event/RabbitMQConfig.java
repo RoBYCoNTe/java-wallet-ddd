@@ -13,7 +13,6 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -73,13 +72,6 @@ public class RabbitMQConfig {
     public Binding binding(Queue queue, TopicExchange exchange) {
         return BindingBuilder.bind(queue).to(exchange).with(ROUTER_KEY);
     }
-
-    /*
-    @Bean
-    public RabbitMQApplicationEventMulticaster applicationEventMulticaster(RabbitTemplate rabbitTemplate) {
-        return new RabbitMQApplicationEventMulticaster(rabbitTemplate);
-    }
-    */
 
     @Bean
     public RabbitMQDomainEventListener domainEventListener(RabbitTemplate rabbitTemplate) {
