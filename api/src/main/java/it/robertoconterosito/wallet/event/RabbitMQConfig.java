@@ -19,6 +19,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableRabbit
+@SuppressWarnings("unused")
 public class RabbitMQConfig {
     private Logger logger = LoggerFactory.getLogger(RabbitMQConfig.class);
     public static final String QUEUE_NAME = "wallet";
@@ -50,43 +51,38 @@ public class RabbitMQConfig {
     public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory, MessageConverter messageConverter) {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(messageConverter);
-        logger.info("RabbitMQ template created");
         return rabbitTemplate;
     }
 
     @Bean
     public MessageConverter jsonMessageConverter() {
-        logger.info("RabbitMQ message converter created");
         return new Jackson2JsonMessageConverter();
     }
 
     @Bean
     public Queue queue() {
-        logger.info("RabbitMQ queue created");
         return new Queue(QUEUE_NAME, false);
     }
 
     @Bean
     public TopicExchange exchange() {
-        logger.info("RabbitMQ exchange created");
         return new TopicExchange(TOPIC_EXCHANGE_NAME);
     }
 
     @Bean
     public Binding binding(Queue queue, TopicExchange exchange) {
-        logger.info("RabbitMQ binding created");
         return BindingBuilder.bind(queue).to(exchange).with(ROUTER_KEY);
     }
 
+    /*
     @Bean
-    public ApplicationEventPublisher applicationEventPublisher(RabbitTemplate rabbitTemplate) {
-        logger.info("RabbitMQ event publisher created");
-        return new RabbitMQEventPublisher(rabbitTemplate, TOPIC_EXCHANGE_NAME);
+    public RabbitMQApplicationEventMulticaster applicationEventMulticaster(RabbitTemplate rabbitTemplate) {
+        return new RabbitMQApplicationEventMulticaster(rabbitTemplate);
     }
+    */
 
     @Bean
-    public RabbitMQApplicationEventMulticaster applicationEventMulticaster() {
-        logger.info("RabbitMQ event multicaster created");
-        return new RabbitMQApplicationEventMulticaster();
+    public RabbitMQDomainEventListener domainEventListener(RabbitTemplate rabbitTemplate) {
+        return new RabbitMQDomainEventListener(rabbitTemplate);
     }
 }

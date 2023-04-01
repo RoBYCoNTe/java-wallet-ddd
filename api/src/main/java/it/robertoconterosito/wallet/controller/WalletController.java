@@ -1,7 +1,6 @@
 package it.robertoconterosito.wallet.controller;
 
 import it.robertoconterosito.wallet.data.sdk.WalletService;
-import it.robertoconterosito.wallet.data.sdk.event.WalletCreatedEvent;
 import it.robertoconterosito.wallet.data.sdk.request.AddTransactionRequest;
 import it.robertoconterosito.wallet.data.sdk.request.CreateWalletRequest;
 import it.robertoconterosito.wallet.data.sdk.request.PaginatedRequest;
@@ -9,8 +8,6 @@ import it.robertoconterosito.wallet.data.sdk.response.AddTransactionResponse;
 import it.robertoconterosito.wallet.data.sdk.response.CreateWalletResponse;
 import it.robertoconterosito.wallet.data.sdk.response.GetWalletResponse;
 import it.robertoconterosito.wallet.data.sdk.response.GetWalletTransactionListResponse;
-import it.robertoconterosito.wallet.event.RabbitMQConfig;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
